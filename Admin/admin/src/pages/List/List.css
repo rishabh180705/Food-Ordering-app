@@ -1,0 +1,114 @@
+/* Main container styling */
+.list {
+    width: 90%;
+    max-width: 800px;
+    margin: 50px auto;
+    color: #4d4d4d;
+    font-size: 1.1rem;
+}
+
+/* Header and title styling */
+.list p {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Table container styling */
+.list-table {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #fafafa;
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Table header styling */
+.list-table-format.title {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    font-weight: 700;
+    border-bottom: 2px solid #e0e0e0;
+    color: #4a90e2;
+    font-size: 1.1rem;
+}
+
+/* Row styling */
+.list-table-format {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.list-table-format:hover {
+    background-color: #f9f9f9;
+}
+
+/* Image styling */
+.list-table-format img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Cell text styling */
+.list-table-format p {
+    margin: 0;
+    color: #4d4d4d;
+    font-size: 1rem;
+    width: 20%;
+    text-align: center;
+}
+
+/* Action button styling */
+.list-table-format p:last-child {
+    color: #e63946;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.list-table-format p:last-child:hover {
+    color: #c21f30;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .list-table-format {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .list-table-format img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .list-table-format p {
+        width: 100%;
+        text-align: left;
+    }
+}
+
+@media (max-width: 480px) {
+    .list {
+        font-size: 1rem;
+    }
+
+    .list-table-format img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .list-table-format p {
+        font-size: 0.9rem;
+    }
+}

@@ -1,0 +1,120 @@
+/* Main container styling */
+.add {
+    width: 80%;
+    max-width: 600px;
+    margin: 50px auto;
+    color: #4d4d4d;
+    font-size: 1.2rem;
+}
+
+/* Form container styling */
+.add form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #fafafa;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Image upload section */
+.add-img-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-img-upload p {
+    font-weight: 500;
+    color: #333;
+}
+
+.add-img-upload img {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.add-img-upload img:hover {
+    opacity: 0.8;
+}
+
+/* Product name and description styling */
+.add-product-name,
+.add-product-description {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.add-product-name p,
+.add-product-description p {
+    font-weight: 500;
+}
+
+.add-product-name input,
+.add-product-description textarea {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+    outline-color: #4a90e2;
+}
+
+/* Category and price container */
+.add-category-price {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.add-category,
+.add-price {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.add-category select,
+.add-price input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline-color: #4a90e2;
+}
+
+/* Add button styling */
+.add-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #4a90e2;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+
+.add-btn:hover {
+    background-color: #357ab8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .add {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .add-category-price {
+        flex-direction: column;
+    }
+}

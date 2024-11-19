@@ -21,6 +21,14 @@ const foodSchema =new mongoose.Schema({
         type:String,
         required:true,
      },
+     Availability:{
+      type:Boolean,
+      default:true,
+     },
+     veg:{
+        type:Boolean,
+        default:true,
+     }
 
 })
 

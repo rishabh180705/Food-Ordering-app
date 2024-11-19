@@ -14,11 +14,7 @@ const Navbar = ({setShowLogin}) => {
     const logout = () => {
       try {
         setToken("");
-        cookieStorage.removeItem(token);
-    
-        // Additional cleanup if needed
-        // setUser(null); // Clear user data if using a user context/state
-    
+       localStorage.removeItem("token");
         navigate("/");
         console.log("Successfully logged out");
       } catch (error) {

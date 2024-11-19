@@ -9,11 +9,6 @@ export const StoreContextProvider = (props) => {
   const [food_list, setFoodList] = useState([]);
   const [token, setToken] = useState("");
 
-  // Utility to get token from cookies
-  const getTokenFromCookies = () => {
-    const match = document.cookie.match(new RegExp('(^| )token=([^;]+)'));
-    return match ? match[2] : null;
-  };
 
   // Fetch food list from server
   const fetchFoodList = async () => {
@@ -80,26 +75,24 @@ export const StoreContextProvider = (props) => {
       const response = await axios.get(`${url}/api/cart/get`, {
         headers: { token }
       });
+     
       setCartItems(response.data.cartData || {});
     } catch (error) {
       console.error("Failed to load cart data:", error);
     }
   };
-
   useEffect(() => {
     async function loadData() {
-      await fetchFoodList();
-
-      const storedToken = getTokenFromCookies();
-      if (storedToken) {
-        setToken(storedToken);
-        await loadCartData(storedToken);
-      } else {
-        console.warn("Token not found in cookies");
+      const tokenFromStorage = localStorage.getItem("token");
+      if (tokenFromStorage) {
+        setToken(tokenFromStorage); // Set token state
+        await loadCartData(tokenFromStorage); // Use the token from storage to load cart data
       }
+      fetchFoodList(); // Fetch the food list
     }
     loadData();
   }, []);
+  
 
   const contextValue = {
     food_list,

@@ -3,21 +3,39 @@ import './FoodItem.css';
 import { assets } from '../../assets/frontend_assets/assets';
 import { StoreContext } from '../../context/storeContext';
 
-const FoodItem = ({ _id, name, price, description, image }) => {
+const FoodItem = ({ _id, name, price, description, image, veg }) => {
   const { cartItems, removeFromCart, addToCart } = useContext(StoreContext);
 
   return (
     <div className='food-item'>
       <div className='food-item-image-container'>
-        <img className='food-item-image' src={image} alt={`${name} image`} />
-        
+        {/* Food image with veg/non-veg badge */}
+        <div className="food-item-badge-container">
+          <span className={`food-item-badge ${veg ? 'veg' : 'non-veg'}`}></span>
+          <img className='food-item-image' src={image} alt={`${name} image`} />
+        </div>
+
+        {/* Add/Remove buttons */}
         {!cartItems[_id] ? (
-          <img className='add' onClick={() => addToCart(_id)} src={assets.add_icon_green} alt="Add item" />
+          <img
+            className='add'
+            onClick={() => addToCart(_id)}
+            src={assets.add_icon_green}
+            alt="Add item"
+          />
         ) : (
           <div className='food-item-counter'>
-            <img onClick={() => removeFromCart(_id)} src={assets.remove_icon_red} alt="Remove item" />
+            <img
+              onClick={() => removeFromCart(_id)}
+              src={assets.remove_icon_red}
+              alt="Remove item"
+            />
             <p>{cartItems[_id]}</p>
-            <img onClick={() => addToCart(_id)} src={assets.add_icon_green} alt="Add more item" />
+            <img
+              onClick={() => addToCart(_id)}
+              src={assets.add_icon_green}
+              alt="Add more item"
+            />
           </div>
         )}
       </div>

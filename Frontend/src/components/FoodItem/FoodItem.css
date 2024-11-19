@@ -65,3 +65,51 @@
 .food-item-counter img{
     width: 30px;
 }
+/* Food Item Container */
+.food-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+  }
+  
+  .food-item-image-container {
+    position: relative;
+    width: 100%;
+  }
+  
+  /* Veg/Non-Veg Badge */
+  .food-item-badge-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .food-item-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 2px solid white;
+    z-index: 1;
+  }
+  
+  /* Green for Veg */
+  .food-item-badge.veg {
+    background-color: #4caf50; /* Green */
+  }
+  
+  /* Red for Non-Veg */
+  .food-item-badge.non-veg {
+    background-color: #f44336; /* Red */
+  }
+  
+  /* Food Item Image */
+  .food-item-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  

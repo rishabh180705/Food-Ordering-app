@@ -8,6 +8,7 @@ import Order from './pages/currentOrder/Order'
 import AllOrders from './pages/AllOrders/AllOrders'
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Coupon from './pages/Coupons/Coupon'
 function App() {
       const url="http://localhost:5000";
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/list" element={<List url={url}/>} />
         <Route path="/order" element={<Order url={url}/>} />
         <Route path="/allOrders" element={<AllOrders url={url}/>} />
+        <Route path="/addCoupon" element={<Coupon url={url}/>} />
       </Routes>
      </div>
     </>

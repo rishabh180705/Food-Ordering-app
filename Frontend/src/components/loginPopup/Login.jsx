@@ -26,8 +26,8 @@ const Login = ({ setShowLogin }) => {
   
       if (response.data.success) {
         
-        setToken(cookieStore.get('token'));
-        localStorage.setItem('token', JSON.stringify());
+        setToken(response.data.token);
+        localStorage.setItem('token', response.data.token);
         toast.success(response.data.message);
         setShowLogin(false);
       } else {

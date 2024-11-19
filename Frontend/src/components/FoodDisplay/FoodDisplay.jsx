@@ -13,7 +13,7 @@ const FoodDisplay = ({ category }) => {
       <div className='food-display-list'>
         {food_list?.length > 0 ? (
           food_list.map((item, index) => {
-            if (category === "All" || item.category === category) {
+            if ((category === "All" || item.category === category) && item.Availability) {
               return (
                 <FoodItem
                   key={index}
@@ -22,6 +22,7 @@ const FoodDisplay = ({ category }) => {
                   price={item.price}
                   image={item.image}
                   description={item.description}
+                  veg={item.veg}
                 />
               );
             }

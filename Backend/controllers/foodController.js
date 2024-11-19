@@ -36,6 +36,7 @@ const addFood = async (req, res) => {
         price: req.body.price,
         category: req.body.category,
         image: uploadResult.secure_url,
+        veg:req.body.veg,
     });
 
     try {
@@ -91,4 +92,42 @@ const removeFood = async (req, res) => {
         res.status(500).json({ success: false, message: "Error deleting food item" });
     }
 };
-export { addFood ,listFood,removeFood };
+
+// stock Management
+const manageStock = async (req, res) => {
+    // console.log("Stock Management");
+    // console.log(req.body.id);
+    
+    try {
+      // Validate request body for the food ID
+        // Find the food item by ID
+        const food = await foodModel.findById(req.body.id);
+        if (!food) {
+            return res.status(404).json({ success: false, message: "Food item not found" });
+        }
+  
+      // Find the food item by ID
+      const foodItem = await foodModel.findById(req.body.id);
+      if (!foodItem) {
+        return res.status(404).json({ success: false, message: "Food item not found" });
+      }
+  
+      // Toggle the Availability status
+      foodItem.Availability = !foodItem.Availability;
+  
+      // Save the updated food item
+      await foodItem.save();
+  
+      // Send success response
+      res.status(200).json({
+        success: true,
+        message: `Stock status updated successfully. Stock is now ${foodItem.Availability ? "Available" : "Out of Stock"}.`,
+        data: foodItem,
+      });
+    } catch (error) {
+      console.error("Error updating stock:", error);
+      res.status(500).json({ success: false, message: "Internal server error" });
+    }
+  };
+  
+export { addFood ,listFood,removeFood,manageStock };

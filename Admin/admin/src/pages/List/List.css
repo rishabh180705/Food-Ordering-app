@@ -1,10 +1,53 @@
 /* Main container styling */
+.in-stock {
+    color: #28a745;
+    border: 1px solid #28a745;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .out-of-stock {
+    color: #dc3545;
+    border: 1px solid #dc3545;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .list-table-format {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .list-table-format img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
 .list {
     width: 90%;
     max-width: 800px;
     margin: 50px auto;
     color: #4d4d4d;
     font-size: 1.1rem;
+}
+.Availability{
+   background-color:green;
+   margin: 1px;
+   padding: 2px;
+  
+}
+.NotAvailability{
+    background-color: Red;
+    margin: 1px;
+    padding: 2px;
+    color: #f9f9f9;
 }
 
 /* Header and title styling */

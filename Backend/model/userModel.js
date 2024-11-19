@@ -16,6 +16,10 @@ const userSchema=new mongoose.Schema({
     cartData:{type:Object,
         default:{},
     },
+    Addresses:{type:Array, default:[],
+    },
+    wishList:{type:Array, default:[],
+    },
 
 },{minimize:false,timestamps:true})
 

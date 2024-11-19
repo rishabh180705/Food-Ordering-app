@@ -6,6 +6,47 @@
     color: #4d4d4d;
     font-size: 1.2rem;
 }
+.veg-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .toggle-btn {
+    width: 50px;
+    height: 25px;
+    background-color: #ccc;
+    border-radius: 25px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .toggle-btn.veg {
+    background-color: #4caf50; /* Green for Veg */
+  }
+  
+  .toggle-btn.non-veg {
+    background-color: #f44336; /* Red for Non-Veg */
+  }
+  
+  .toggle-circle {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translate(0, -50%);
+    transition: all 0.3s ease;
+  }
+  
+  .toggle-btn.non-veg .toggle-circle {
+    left: 70%; /* Move the circle to the right for Non-Veg */
+  }
+  
 
 /* Form container styling */
 .add form {

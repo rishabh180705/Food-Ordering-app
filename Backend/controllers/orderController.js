@@ -18,7 +18,7 @@ const placeOrder = async (req, res) => {
         await newOrder.save();
 
         // Update user cart data (this part should be based on your app's data model)
-        await userModel.findByIdAndUpdate(req.body.userId, { cartData: [] }); // Adjust as necessary
+        await userModel.findByIdAndUpdate(req.body.userId, { cartData:{} }); // Adjust as necessary
 
         // Map the items to the format required by Stripe for line_items
         const line_items = req.body.items.map((item) => ({
@@ -61,7 +61,25 @@ const placeOrder = async (req, res) => {
         res.json({ success:false,message: "An error occurred while placing the order." });
     }
 };
+   const verifyOrder =async(req,res)=>{
+   const{orderId,success}=req.body;
+   try{
+    
+     if(success==="true"){
+        await orderModel.findByIdAndUpdate(orderId,{payment:true});
+        res.json({success:true,message:"Paid"});
+     }
+     else{
+        await orderModel.findByIdAndUpdate(orderId);
+        res.json({success:false,message:"Not Paid"});
+     }
 
+   }catch(err){
+    console.log(err);
+    res.json({success:false,message:"Error"});
+   }
+
+   }
 
 // user orders for frontend
 const userOrders=async(req,res)=>{
@@ -95,4 +113,4 @@ const updateStatus=async(req,res)=>{
  }
 }
 
-export { placeOrder,userOrders,listOrders,updateStatus};
+export { placeOrder,userOrders,listOrders,updateStatus,verifyOrder};

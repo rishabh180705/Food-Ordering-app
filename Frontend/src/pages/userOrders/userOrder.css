@@ -1,105 +1,52 @@
-/* General styles */
 .my-orders {
     padding: 20px;
     font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    min-height: 100vh;
-  }
-  
-  .my-orders h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
   }
   
   .container {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 20px;
-    justify-content: center;
   }
   
-  /* Individual order card */
   .my-orders-order {
-    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 20px;
-    width: 100%;
-    max-width: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s ease;
-  }
-  
-  .my-orders-order:hover {
-    transform: scale(1.02);
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
   }
   
   .my-orders-order img {
     width: 50px;
     height: 50px;
-    margin-bottom: 10px;
+    margin-right: 20px;
   }
   
   .my-orders-order p {
-    margin: 8px 0;
-    font-size: 14px;
-    color: #555;
-  }
-  
-  .my-orders-order p b {
-    color: #333;
+    margin: 0 10px;
+    flex-grow: 1;
   }
   
   .my-orders-order button {
-    margin-top: 10px;
-    padding: 8px 15px;
-    background: #007bff;
-    color: #ffffff;
+    background-color: #007bff;
+    color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
+    padding: 8px 16px;
     cursor: pointer;
-    font-size: 14px;
-    transition: background 0.3s ease;
+    transition: background-color 0.3s ease;
   }
   
   .my-orders-order button:hover {
-    background: #0056b3;
+    background-color: #0056b3;
   }
   
-  /* Responsive styles */
-  @media (max-width: 768px) {
-    .container {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .my-orders-order {
-      max-width: 90%;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .my-orders h2 {
-      font-size: 20px;
-    }
-  
-    .my-orders-order {
-      padding: 15px;
-    }
-  
-    .my-orders-order p {
-      font-size: 12px;
-    }
-  
-    .my-orders-order button {
-      font-size: 12px;
-      padding: 6px 10px;
-    }
+  .error {
+    color: red;
+    font-weight: bold;
   }
   

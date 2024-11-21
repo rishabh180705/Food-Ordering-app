@@ -83,7 +83,7 @@ export const StoreContextProvider = (props) => {
       const response = await axios.get(`${url}/api/cart/get`, {
         headers: { token: tokenFromStorage },
       });
-      setCartItems(response.data.cartData || {});
+      setCartItems(response.data.cartData);
     } catch (error) {
       console.error("Failed to load cart data:", error);
     }

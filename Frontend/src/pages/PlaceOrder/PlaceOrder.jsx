@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const PlaceOrder = () => {
-    const { getTotalCartAmount, token, cartItems, instruction, url, total } = useContext(StoreContext);
+    const { getTotalCartAmount, token, food_list,cartItems, instruction, url, total } = useContext(StoreContext);
     const [data, setData] = useState({
         firstName: "",
         lastName: "",
@@ -34,6 +34,26 @@ const PlaceOrder = () => {
     const handleProceedToPayment = async (event) => {
         event.preventDefault();
         // Add validation logic here
+        let orderItems=[];
+        food_list.map((item)=>{
+            if(cartItems[item._id]>0 && item.Availability){
+                let itemInfo=item;
+                itemInfo['quantity'] = cartItems[item._id];
+                orderItems.push(itemInfo);
+            }
+        })
+        let orderData={address:data,items:orderItems
+            ,amount:grandTotal,
+            instruction,
+        }
+        let response=await axios.post(url+"/api/order/place",orderData,{headers:{token}});
+        if(response.data.success){
+            const {session_url}=response.data;
+            window.location.replace(session_url);
+        }
+        else{
+            alert("Error");
+        }
     };
 
     const handleCashOnDelivery = async () => {
@@ -42,12 +62,7 @@ const PlaceOrder = () => {
 
     const DELIVERY_FEE = getTotalCartAmount() === 0 ? 0 : 2;
     const grandTotal = getTotalCartAmount() + DELIVERY_FEE - total;
-    // useEffect(() => {
-    // const fetchAddresses=async()=>{
-    //     const response = await axios.get(url+'/api/')
-    // }
-   
-    // }, [])
+  
     
 
     return (
@@ -56,20 +71,20 @@ const PlaceOrder = () => {
                 <div className="place-order-left">
                     <p className="title">Delivery Information</p>
                     <div className="multi-fields">
-                        <input type="text" name="firstName" placeholder="First Name" value={data.firstName} onChange={handleInputChange} />
-                        <input type="text" name="lastName" placeholder="Last Name" value={data.lastName} onChange={handleInputChange} />
+                        <input required type="text" name="firstName" placeholder="First Name" value={data.firstName} onChange={handleInputChange} />
+                        <input required type="text" name="lastName" placeholder="Last Name" value={data.lastName} onChange={handleInputChange} />
                     </div>
-                    <input type="email" name="email" placeholder="Email address" value={data.email} onChange={handleInputChange} />
-                    <input type="text" name="street" placeholder="Street" value={data.street} onChange={handleInputChange} />
+                    <input required type="email" name="email" placeholder="Email address" value={data.email} onChange={handleInputChange} />
+                    <input required type="text" name="street" placeholder="Street" value={data.street} onChange={handleInputChange} />
                     <div className="multi-fields">
-                        <input type="text" name="city" placeholder="City" value={data.city} onChange={handleInputChange} />
-                        <input type="text" name="state" placeholder="State" value={data.state} onChange={handleInputChange} />
+                        <input required type="text" name="city" placeholder="City" value={data.city} onChange={handleInputChange} />
+                        <input required type="text" name="state" placeholder="State" value={data.state} onChange={handleInputChange} />
                     </div>
                     <div className="multi-fields">
-                        <input type="text" name="pincode" placeholder="Pin code" value={data.pincode} onChange={handleInputChange} />
-                        <input type="text" name="landmark" placeholder="Landmark" value={data.landmark} onChange={handleInputChange} />
+                        <input required type="text" name="pincode" placeholder="Pin code" value={data.pincode} onChange={handleInputChange} />
+                        <input required type="text" name="landmark" placeholder="Landmark" value={data.landmark} onChange={handleInputChange} />
                     </div>
-                    <input type="text" name="phone" placeholder="Phone Number" value={data.phone} onChange={handleInputChange} />
+                    <input required type="text" name="phone" placeholder="Phone Number" value={data.phone} onChange={handleInputChange} />
                 </div>
 
                 <div className="place-order-right">
@@ -92,9 +107,9 @@ const PlaceOrder = () => {
                             </div>
                         </div>
                         <button type="submit">PROCEED TO PAYMENT</button>
-                        <button type="button" onClick={handleCashOnDelivery}>
+                        {/* <button type="button" onClick={handleCashOnDelivery}>
                             CASH ON DELIVERY
-                        </button>
+                        </button> */}
                     </div>
                 </div>
             </form>

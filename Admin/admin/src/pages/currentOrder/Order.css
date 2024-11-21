@@ -1,0 +1,129 @@
+/* Order.css */
+.order {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  .order h3 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .order-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .order-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .order-item img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 15px;
+  }
+  
+  .order-item div {
+    text-align: left;
+    width: 100%;
+  }
+  
+  .order-item-food {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #555;
+  }
+  
+  .order-item-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .order-instruction {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 10px;
+  }
+  
+  .order-item-address {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+  
+  .order-item-phone {
+    font-size: 0.9rem;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .order-item p:last-of-type {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  select {
+    margin-top: 15px;
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  select:focus {
+    border-color: #007bff;
+    outline: none;
+    background-color: #eef6ff;
+  }
+  
+  select option {
+    padding: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .order-item {
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 15px;
+    }
+  
+    .order-item img {
+      margin-right: 15px;
+    }
+  
+    .order-item div {
+      text-align: left;
+      flex-grow: 1;
+    }
+  
+    select {
+      width: auto;
+      flex-grow: 0;
+    }
+  }
+  

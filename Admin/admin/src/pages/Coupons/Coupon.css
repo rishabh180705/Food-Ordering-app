@@ -129,4 +129,89 @@
       font-size: 14px;
     }
   }
+  /* Container Styling */
+.coupon-list {
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  overflow-x: auto; /* Ensure horizontal scroll for smaller screens */
+  padding: 15px;
+}
+
+.coupon-list-heading {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Table Styling */
+.coupon-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  background-color: #fff;
+}
+
+.coupon-table thead {
+  background-color: #007bff;
+  color: #0e0000;
+}
+
+.coupon-table th,
+.coupon-table td {
+  text-align: left;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+}
+
+.coupon-table th {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.coupon-table tbody tr:nth-child(odd) {
+  background-color: #f5f5f5;
+}
+
+.coupon-table tbody tr:hover {
+  background-color: #f1faff;
+}
+
+.coupon-table td {
+  font-size: 0.85rem;
+}
+
+/* Button Styling */
+.coupon-table button {
+  margin-right: 5px;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.coupon-table button:hover {
+  opacity: 0.9;
+}
+
+.coupon-table button:nth-child(1) {
+  background-color: #28a745; /* Green for Edit */
+}
+
+.coupon-table button:nth-child(2) {
+  background-color: #dc3545; /* Red for Delete */
+}
+
+/* Empty State Styling */
+.empty-state-message {
+  color: #555;
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 20px;
+}
+
   

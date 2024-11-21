@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const couponSchema = new mongoose.Schema({
   code: {
@@ -46,11 +46,11 @@ const couponSchema = new mongoose.Schema({
     type: Boolean,
     default: true, // Toggle to activate or deactivate the coupon
   },
-  createdBy: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Admin', // Reference to the admin who created the coupon
-    required: true,
-  },
+//   createdBy: {
+//     type: mongoose.Schema.Types.ObjectId,
+//     ref: 'Admin', // Reference to the admin who created the coupon
+//     required: true,
+//   },
 }, { timestamps: true });
 
 // Middleware to ensure valid date range
@@ -63,4 +63,4 @@ couponSchema.pre('save', function (next) {
 
 const Coupon = mongoose.model('Coupon', couponSchema);
 
-module.exports = Coupon;
+export default Coupon;

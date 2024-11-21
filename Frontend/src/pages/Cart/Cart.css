@@ -82,6 +82,18 @@
     color:white;
     border-radius: 4px;
 }
+.cart-instructions {
+    margin-top: 20px;
+  }
+  
+  .cart-instructions-textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
 
 @media (max-width:750px){
     .cart-bottom{

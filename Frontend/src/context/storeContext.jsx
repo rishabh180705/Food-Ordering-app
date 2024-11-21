@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
-import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export const StoreContext = createContext(null);
 
@@ -8,7 +9,9 @@ export const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
   const [food_list, setFoodList] = useState([]);
   const [token, setToken] = useState("");
-
+  const [instruction, setInstruction] = useState("");
+ 
+  const navigate = useNavigate();
 
   // Fetch food list from server
   const fetchFoodList = async () => {
@@ -66,33 +69,53 @@ export const StoreContextProvider = (props) => {
   const getTotalCartAmount = () => {
     return Object.entries(cartItems).reduce((total, [itemId, quantity]) => {
       const item = food_list.find((product) => product._id === itemId);
-      return item ? total + item.price * quantity : total;
+      if (item && item.Availability) {
+        return total + item.price * quantity;
+      }
+      return total;
     }, 0);
   };
 
-  const loadCartData = async (token) => {
+  const [total,setTotal]=useState(0);
+
+  const loadCartData = async (tokenFromStorage) => {
     try {
       const response = await axios.get(`${url}/api/cart/get`, {
-        headers: { token }
+        headers: { token: tokenFromStorage },
       });
-     
       setCartItems(response.data.cartData || {});
     } catch (error) {
       console.error("Failed to load cart data:", error);
     }
   };
-  useEffect(() => {
-    async function loadData() {
-      const tokenFromStorage = localStorage.getItem("token");
-      if (tokenFromStorage) {
-        setToken(tokenFromStorage); // Set token state
-        await loadCartData(tokenFromStorage); // Use the token from storage to load cart data
-      }
-      fetchFoodList(); // Fetch the food list
+
+  const loggingOut = () => {
+    try {
+      setToken("");
+      localStorage.removeItem("token");
+      setCartItems({});
+      navigate("/"); // Redirect to home page
+      console.log("Successfully logged out");
+    } catch (error) {
+      console.error("Logout failed:", error);
     }
-    loadData();
-  }, []);
-  
+  };
+
+  useEffect(() => {
+    const tokenFromStorage = localStorage.getItem("token");
+    if (tokenFromStorage) {
+      setToken(tokenFromStorage); // Set token state
+      loadCartData(tokenFromStorage); // Use token to load cart data
+    }
+    fetchFoodList(); // Fetch the food list
+  }, []); // Only runs on initial load (similar to componentDidMount)
+
+  useEffect(() => {
+    // Reset cart items when the token is cleared
+    if (!token) {
+      setCartItems({});
+    }
+  }, [token]); // Runs when `token` is updated (like on logout)
 
   const contextValue = {
     food_list,
@@ -104,6 +127,12 @@ export const StoreContextProvider = (props) => {
     url,
     token,
     setToken,
+    loadCartData,
+    loggingOut,
+    instruction,
+    setInstruction,
+    total,
+    setTotal,
   };
 
   return (

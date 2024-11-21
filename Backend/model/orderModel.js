@@ -10,6 +10,9 @@ const orderSchema =new mongoose.Schema({
         type:Array,
         required:true,
     },
+    instruction:{
+     type:String,
+    },
   amount:{
     type:Number,
     required:true,

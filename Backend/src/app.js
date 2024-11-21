@@ -5,6 +5,7 @@ import foodRouter from "../routes/foodRoute.js";
 import userRoute from "../routes/userRoute.js";
 import CartRouter from '../routes/cartRoute.js';
 import orderRouter from '../routes/orderRoute.js';
+import couponRouter from '../routes/couponRoute.js';
 import cookieParser from 'cookie-parser';
 
 
@@ -24,6 +25,7 @@ app.use('/api/food',foodRouter);
 app.use('/api/user',userRoute);
 app.use('/api/cart',CartRouter);
 app.use('/api/order',orderRouter);
+app.use('/api/admin',couponRouter);
 export default app;
 
 

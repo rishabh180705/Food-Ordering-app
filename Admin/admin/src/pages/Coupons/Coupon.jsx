@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Coupon.css';
 
-const CouponCreationForm = () => {
+const CouponCreationForm = ({url}) => {
   const [formData, setFormData] = useState({
     code: '',
     discountType: 'percentage',
@@ -23,21 +23,26 @@ const CouponCreationForm = () => {
   // Fetch all coupons on component mount
   useEffect(() => {
     const fetchCoupons = async () => {
+      setLoading(true);
       try {
-        const response = await axios.get('/api/admin/coupons', {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('adminToken')}`, // Admin token for authentication
-          },
-        });
-        setCoupons(response.data || []); // Set data if available, else set an empty array
+        const response = await axios.get(`${url}/api/admin/coupons`);
+        //setCoupons(response.data.json());
+        
+        for(let i=0;i<response.data.data.length;i++){
+            coupons.push(response.data.data[i]);
+            console.log(response.data.data[i],i);
+        }
+        console.log(response.data.data);
+        console.log(coupons);
       } catch (error) {
-        setMessage('Failed to fetch coupons');
+        setMessage(error.response?.data?.message || 'Failed to fetch coupons');
+      } finally {
+        setLoading(false);
       }
     };
-
+  
     fetchCoupons();
-  }, []);
-
+  }, [url]);
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
@@ -52,11 +57,7 @@ const CouponCreationForm = () => {
     setMessage('');
 
     try {
-      const response = await axios.post('/api/admin/coupons', formData, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('adminToken')}`, // Admin token for authentication
-        },
-      });
+      const response = await axios.post(`${url}/api/admin/AddCoupon`, formData);
       setMessage(`Coupon created successfully: ${response.data.code}`);
       setFormData({
         code: '',
@@ -188,44 +189,50 @@ const CouponCreationForm = () => {
       </form>
 
       <h3 className="coupon-list-heading">All Coupons</h3>
-      <div className="coupon-list">
-        { Array.isArray(coupons) && coupons.length > 0 ? (
-          <table className="coupon-table">
-            <thead>
-              <tr>
-                <th>Code</th>
-                <th>Discount Type</th>
-                <th>Discount Value</th>
-                <th>Min Order Value</th>
-                <th>Max Discount</th>
-                <th>Usage Limit</th>
-                <th>User Limit</th>
-                <th>Valid From</th>
-                <th>Valid Till</th>
-                <th>Active</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Array.isArray(coupons) && coupons.map((coupon) => (
-                <tr key={coupon._id}>
-                  <td>{coupon.code}</td>
-                  <td>{coupon.discountType}</td>
-                  <td>{coupon.discountValue}</td>
-                  <td>{coupon.minOrderValue}</td>
-                  <td>{coupon.maxDiscount}</td>
-                  <td>{coupon.usageLimit}</td>
-                  <td>{coupon.userLimit}</td>
-                  <td>{new Date(coupon.validFrom).toLocaleDateString()}</td>
-                  <td>{new Date(coupon.validTill).toLocaleDateString()}</td>
-                  <td>{coupon.active ? 'Yes' : 'No'}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        ) : (
-          <p>No coupons available</p>
-        )}
-      </div>
+<div className="coupon-list">
+  {Array.isArray(coupons) && coupons.length > 0 ? (
+    <table className="coupon-table" aria-label="List of available coupons">
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Discount Type</th>
+          <th>Discount Value</th>
+          <th>Min Order Value</th>
+          <th>Max Discount</th>
+          <th>Usage Limit</th>
+          <th>User Limit</th>
+          <th>Valid From</th>
+          <th>Valid Till</th>
+          <th>Active</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {coupons.map((coupon) => (
+          <tr key={coupon._id}>
+            <td>{coupon.code}</td>
+            <td>{coupon.discountType}</td>
+            <td>{coupon.discountValue}</td>
+            <td>{coupon.minOrderValue}</td>
+            <td>{coupon.maxDiscount}</td>
+            <td>{coupon.usageLimit}</td>
+            <td>{coupon.userLimit}</td>
+            <td>{new Date(coupon.validFrom).toLocaleDateString()}</td>
+            <td>{new Date(coupon.validTill).toLocaleDateString()}</td>
+            <td>{coupon.active ? 'Yes' : 'No'}</td>
+            <td>
+              <button onClick={() => handleEdit(coupon)}>Edit</button>
+              <button onClick={() => handleDelete(coupon._id)}>Delete</button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  ) : (
+    <p className="empty-state-message">No coupons available. Create a new coupon to get started!</p>
+  )}
+</div>
+
     </div>
   );
 };

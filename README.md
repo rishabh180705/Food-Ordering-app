@@ -45,10 +45,10 @@ A full-stack web application that allows users to browse food items, manage thei
    cd food-ordering-app
    
 ## Future Enhancements 🔮
-- **Online Payment Integration: Add support for payment gateways.
-- **Order Tracking: Real-time updates for delivery status.
-- **Push Notifications: Notify users about order updates and promotions.
-Mobile App: Develop a mobile version for better accessibility.
+- Online Payment Integration: Add support for payment gateways.
+- Order Tracking: Real-time updates for delivery status.
+- Push Notifications: Notify users about order updates and promotions.
+- Mobile App: Develop a mobile version for better accessibility.
 
 ## ScreenShot
 ![Screenshot 2024-11-11 104217](https://github.com/user-attachments/assets/37db96a9-154f-4988-9eef-7c7e4e23617e)
@@ -59,9 +59,9 @@ Mobile App: Develop a mobile version for better accessibility.
 This project is licensed under the MIT License.
 
 ## Contact 📬
-- **Name: Rishabh Singh
-- **Email: rishabh180705@gmail.com
-- **LinkedIn: https://www.linkedin.com/in/rishabh-singh-506491221/
+- Name: Rishabh Singh
+- Email: rishabh180705@gmail.com
+- LinkedIn: https://www.linkedin.com/in/rishabh-singh-506491221/
 
 
 

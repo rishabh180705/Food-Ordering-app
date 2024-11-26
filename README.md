@@ -41,6 +41,31 @@ A full-stack web application that allows users to browse food items, manage thei
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/food-ordering-app.git
+   git clone https://github.com/rishabh180705/Food-Ordering-app.git
    cd food-ordering-app
+   
+## Future Enhancements 🔮
+Online Payment Integration: Add support for payment gateways.
+Order Tracking: Real-time updates for delivery status.
+Push Notifications: Notify users about order updates and promotions.
+Mobile App: Develop a mobile version for better accessibility.
+
+## ScreenShot
+![Screenshot 2024-11-11 104217](https://github.com/user-attachments/assets/37db96a9-154f-4988-9eef-7c7e4e23617e)
+![Screenshot 2024-11-11 104319](https://github.com/user-attachments/assets/efed9e32-ff34-49a6-afc4-95fc0af8ad81)
+![Screenshot 2024-11-11 104440](https://github.com/user-attachments/assets/c76614e7-2049-458c-9522-af48ea04c47d)
+
+## License 📜
+This project is licensed under the MIT License.
+
+## Contact 📬
+Name: Rishabh Singh
+Email: rishabh180705@gmail.com
+LinkedIn: https://www.linkedin.com/in/rishabh-singh-506491221/
+
+
+
+
+
+
 

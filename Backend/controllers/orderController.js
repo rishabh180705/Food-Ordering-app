@@ -5,7 +5,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET);
 
 // Place Order
 const placeOrder = async (req, res) => {
-    const frontend_url="http://localhost:5174"
+    const frontend_url="http://localhost:5173"
     try {
         // Create a new order document in the database
         const newOrder = new orderModel({

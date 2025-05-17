@@ -67,7 +67,7 @@ const Order = ({ url }) => {
                                     order.address.pincode,
                                 ].filter(Boolean).join(', ')}
                             </p>
-                            <p className="order-item-phone">{order.address.phone}</p>
+                            <p className="order-item-phone">+91 {order.address.phone}</p>
                         </div>
                         <p>Items: {order.items.length}</p>
                         <p>${order.amount.toFixed(2)}</p>
